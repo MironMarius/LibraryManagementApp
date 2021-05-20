@@ -16,10 +16,7 @@ namespace LibraryManagement
         static void Main(string[] args)
         {
             DefaultBooks();
-            AppInfo();
             RunMainMenu();
-            
-
         }
      
         //Menu option 1: Add a book to the library
@@ -31,25 +28,26 @@ namespace LibraryManagement
             while(option==1)
             {
                 
-                Console.WriteLine();
+                
                 Console.Write("Enter Book Name: ");
-                string new_book = Console.ReadLine();
+                string book_name = Console.ReadLine();
 
 
                 foreach (Book book in AllBooks)
-                    if (new_book == "")
+                    if (book_name == "")
                         break;
-                    else if ((new_book.Length).CompareTo(10) > 0)
+                    else if ((book_name.Length).CompareTo(15) > 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Book name is too long");
+                        Console.WriteLine("Try again!");
                         Console.ResetColor();
-                        Menu1();
-                        //ChooseAction();
-                        //UserInput();
+                        AddBook();
+                        
+                        
                     }
 
-                        Console.WriteLine();
+                        
                 int book_id = 1;
                 foreach (Book book in AllBooks)
                     for (int i = 1; i <= (AllBooks.Count) + 1; i++)
@@ -58,13 +56,14 @@ namespace LibraryManagement
                 Console.WriteLine();
                 Console.Write("Enter Book Price: ");
                 int book_price = int.Parse(Console.ReadLine());
-                if (book_price > 100 || book_price < 20)
+                if (book_price > 150 || book_price < 20)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Book price must be between 20 and 100");
+                    Console.WriteLine("Book price must be between 20 and 150");
+                    Console.WriteLine("Try again!");
                     Console.ResetColor();
-                    Menu1();
-                   
+                    AddBook();
+
                 }
 
 
@@ -75,13 +74,14 @@ namespace LibraryManagement
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Book ISBN must be 13 characters long");
+                    Console.WriteLine("Try again!");
                     Console.ResetColor();
-                    Menu1();
-                  
+                    AddBook();
+
                 }
 
 
-                Book b = new Book(book_id, new_book, book_isbn, book_price);
+                Book b = new Book(book_id, book_name, book_isbn, book_price);
                 AllBooks.Add(b);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("You have succesfully added the book to the library!");
@@ -95,42 +95,7 @@ namespace LibraryManagement
         //Menu options 2: Display all the books 
         public static void GetAllBooks()
         {
-            //Display books that are in the library
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Books in the library: ");
-            Console.WriteLine();
-            Console.ResetColor();
-            foreach (Book b in AllBooks)
-            {
-
-                Console.Write("Book ID: ");
-                Console.WriteLine(b.Id);
-                Console.Write("Book name: ");
-                Console.WriteLine(b.Name);
-                Console.Write("ISBN: ");
-                Console.WriteLine(b.Isbn);
-                Console.Write("Rental price: ");
-                Console.WriteLine(b.Price);
-                Console.WriteLine(" ");
-
-            }
-            //Display books that are rented
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Books that are rented: ");
-            Console.WriteLine();
-            Console.ResetColor();
-            foreach (Book r in RentedBooks)
-            {
-                Console.Write("Book ID: ");
-                Console.WriteLine(r.Id);
-                Console.Write("Book name: ");
-                Console.WriteLine(r.Name);
-                Console.Write("ISBN: ");
-                Console.WriteLine(r.Isbn);
-                Console.Write("Rental price: ");
-                Console.WriteLine(r.Price);
-                Console.WriteLine(" ");
-            }
+            DisplayBooks();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Press ENTER to proceed to the MENU");
             Console.ForegroundColor = ConsoleColor.Red;
@@ -192,20 +157,6 @@ namespace LibraryManagement
             {
                 ExitApp();
             }
-
-            //Console.ForegroundColor = ConsoleColor.Red;
-            //Console.Write("Menu:");
-            //Console.WriteLine("Check for another book.(Type 1)");
-            //Console.WriteLine("Return to the Main menu.(Type 2)");
-            //Console.ResetColor();
-            //int option = int.Parse(Console.ReadLine());
-            //if (option == 2)
-            //{
-            //   ChooseAction();
-            //   UserInput();
-            //}
-            //else if (option == 1)
-            // NumberOfBooks();
 
         }
 
@@ -545,8 +496,9 @@ namespace LibraryManagement
 
         public static void DisplayBooks()
         {
+            //Display books that are in the library
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Books that are in the library: ");
+            Console.WriteLine("Books that are available in the library: ");
             Console.WriteLine();
             Console.ResetColor();
             foreach (Book b in AllBooks)
@@ -561,6 +513,8 @@ namespace LibraryManagement
                 Console.WriteLine(b.Price);
                 Console.WriteLine(" ");
             }
+
+            //Display books that are rented
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Books that are rented: ");
             Console.WriteLine();
@@ -579,35 +533,6 @@ namespace LibraryManagement
             }
         }
 
-        //App introduction
-        static void AppInfo()
-        {
-            string appName = "Welcome to the virtual library!";
-            string appVersion = "1.0.0";
-            string appAuthor = "Miron Marius";
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("{0}: version {1} made by {2}", appName, appVersion, appAuthor);
-            Console.ResetColor();
-        }
-
-        //Lets user choose the action they want to perform
-        static void ChooseAction()
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(" ");
-            Console.WriteLine("MAIN MENU:");
-            Console.WriteLine("Enter a new book.(Type 1)");
-            Console.WriteLine("Display all the books in the library.(Type 2)");
-            Console.WriteLine("Check the availabilty of a book.(Type 3)");
-            Console.WriteLine("Rent or return a book.(Type 4)");
-            Console.WriteLine(" ");
-            Console.Write("Enter your action here:");
-            Console.ResetColor();
-
-
-        }
-
     }
-
 
 }
