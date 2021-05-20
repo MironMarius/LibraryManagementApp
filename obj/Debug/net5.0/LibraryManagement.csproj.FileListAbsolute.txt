@@ -1,0 +1,16 @@
+C:\Users\TEO\Desktop\Apps\LibraryManagement\bin\Debug\net5.0\LibraryManagement.exe
+C:\Users\TEO\Desktop\Apps\LibraryManagement\bin\Debug\net5.0\LibraryManagement.deps.json
+C:\Users\TEO\Desktop\Apps\LibraryManagement\bin\Debug\net5.0\LibraryManagement.runtimeconfig.json
+C:\Users\TEO\Desktop\Apps\LibraryManagement\bin\Debug\net5.0\LibraryManagement.runtimeconfig.dev.json
+C:\Users\TEO\Desktop\Apps\LibraryManagement\bin\Debug\net5.0\LibraryManagement.dll
+C:\Users\TEO\Desktop\Apps\LibraryManagement\bin\Debug\net5.0\ref\LibraryManagement.dll
+C:\Users\TEO\Desktop\Apps\LibraryManagement\bin\Debug\net5.0\LibraryManagement.pdb
+C:\Users\TEO\Desktop\Apps\LibraryManagement\obj\Debug\net5.0\LibraryManagement.csprojAssemblyReference.cache
+C:\Users\TEO\Desktop\Apps\LibraryManagement\obj\Debug\net5.0\LibraryManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TEO\Desktop\Apps\LibraryManagement\obj\Debug\net5.0\LibraryManagement.AssemblyInfoInputs.cache
+C:\Users\TEO\Desktop\Apps\LibraryManagement\obj\Debug\net5.0\LibraryManagement.AssemblyInfo.cs
+C:\Users\TEO\Desktop\Apps\LibraryManagement\obj\Debug\net5.0\LibraryManagement.csproj.CoreCompileInputs.cache
+C:\Users\TEO\Desktop\Apps\LibraryManagement\obj\Debug\net5.0\LibraryManagement.dll
+C:\Users\TEO\Desktop\Apps\LibraryManagement\obj\Debug\net5.0\ref\LibraryManagement.dll
+C:\Users\TEO\Desktop\Apps\LibraryManagement\obj\Debug\net5.0\LibraryManagement.pdb
+C:\Users\TEO\Desktop\Apps\LibraryManagement\obj\Debug\net5.0\LibraryManagement.genruntimeconfig.cache
