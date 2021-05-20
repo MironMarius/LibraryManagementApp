@@ -21,7 +21,7 @@ namespace LibraryManagement
         [Required(ErrorMessage = "The book price is required")]
         [MinLength(2)]
         [MaxLength(3)]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         
 
         //Book constructors
@@ -30,7 +30,7 @@ namespace LibraryManagement
 
         }
 
-        public Book(int id, string name, string isbn, int price)
+        public Book(int id, string name, string isbn, decimal price)
         {
             Id = id;
             Name = name;
