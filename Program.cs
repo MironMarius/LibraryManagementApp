@@ -5,21 +5,19 @@ using static System.Console;
 
 namespace LibraryManagement
 {
-   
 
-    class Program
+
+    public class Program
     {
         public static List<Book> AllBooks = new List<Book>();
         public static List<Book> RentedBooks = new List<Book>();
-
-
-        static void Main(string[] args)
+    
+        public static void Main(string[] args)
         {
             DefaultBooks();
             RunMainMenu();
         }
-     
-        //Menu option 1: Add a book to the library
+        // Add a book to the library
         public static void AddBook()
         {
             Console.WriteLine("Enter the information of the new book: ");
@@ -27,12 +25,10 @@ namespace LibraryManagement
             int option = 1;
             while(option==1)
             {
-                
-                
                 Console.Write("Enter Book Name: ");
                 string book_name = Console.ReadLine();
 
-
+                //adding the new book to the list
                 foreach (Book book in AllBooks)
                     if (book_name == "")
                         break;
@@ -43,11 +39,8 @@ namespace LibraryManagement
                         Console.WriteLine("Try again!");
                         Console.ResetColor();
                         AddBook();
-                        
-                        
                     }
 
-                        
                 int book_id = 1;
                 foreach (Book book in AllBooks)
                     for (int i = 1; i <= (AllBooks.Count) + 1; i++)
@@ -63,9 +56,7 @@ namespace LibraryManagement
                     Console.WriteLine("Try again!");
                     Console.ResetColor();
                     AddBook();
-
                 }
-
 
                 Console.WriteLine();
                 Console.Write("Enter ISBN: ");
@@ -77,9 +68,7 @@ namespace LibraryManagement
                     Console.WriteLine("Try again!");
                     Console.ResetColor();
                     AddBook();
-
                 }
-
 
                 Book b = new Book(book_id, book_name, book_isbn, book_price);
                 AllBooks.Add(b);
@@ -88,11 +77,10 @@ namespace LibraryManagement
                 Console.ResetColor();
                 Console.WriteLine();
                 Menu1();
-              
             }   
         }
 
-        //Menu options 2: Display all the books 
+        //: Display all the books 
         public static void GetAllBooks()
         {
             DisplayBooks();
@@ -109,23 +97,19 @@ namespace LibraryManagement
             if (keyPressed == ConsoleKey.Enter)
             {
                 Menu2();
-
             }
             else
             {
                 ExitApp();
             }
-
-
-
         }
-        //Display menu option 3: check book availability
+
+        // check book availability
         public static void NumberOfBooks()
         {
             Console.WriteLine("Choose a book to check it's availability!");
             DisplayBooks();
             Console.Write("Enter the NAME of the book you want to choose: ");
-
             string userInput = Console.ReadLine();
             int nr = 0;
             foreach (Book b in AllBooks)
@@ -133,7 +117,7 @@ namespace LibraryManagement
                 {
                     nr += 1;
                 }
-
+            
             Console.WriteLine("There are {0} {1} books available", nr, userInput);
                 Console.WriteLine("");
                 Console.ResetColor();
@@ -147,17 +131,14 @@ namespace LibraryManagement
             ConsoleKey keyPressed;
             ConsoleKeyInfo keyInfo = ReadKey(true);
             keyPressed = keyInfo.Key;
-
             if (keyPressed == ConsoleKey.Enter)
             {
                 Menu3();
-
             }
             else
             {
                 ExitApp();
             }
-
         }
 
         //Rent a book function
@@ -183,8 +164,6 @@ namespace LibraryManagement
             Console.WriteLine();
             Console.ResetColor();
 
-            
-
             foreach (Book q in RentedBooks)
             { 
                 Console.Write("Book ID: ");
@@ -193,10 +172,8 @@ namespace LibraryManagement
                 Console.WriteLine(q.Name);
                 Console.Write("ISBN: ");
                 Console.WriteLine(q.Isbn);
-                Console.Write("Rental price: ");
-                Console.WriteLine(q.Price);
+                Console.Write("Rental price: {0} RON ", q.Price);
                 Console.WriteLine(" ");
-
             }
 
             //take keyboard input
@@ -212,68 +189,12 @@ namespace LibraryManagement
             if (keyPressed == ConsoleKey.Enter)
             {
                 Menu4();
-
             }
             else
             {
                 ExitApp();
             }
         }
-
-        public static void ReturnBook()
-        {
-            
-            Console.WriteLine();
-            DisplayBooks();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("Enter the ID of the book that will be returned: ");
-            Console.ResetColor();
-            int inputId = int.Parse(Console.ReadLine());
-            foreach(Book r in RentedBooks.ToList())
-                if(inputId==r.Id)
-                        {
-                    Console.WriteLine("The book {0} has {1} rent to be paid", r.Name, RentDue(r));
-                            AllBooks.Add(r);
-                            RentedBooks.Remove(r);
-                        }
-            
-            Console.WriteLine();
-
-            //take keyboard input
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Press ENTER to proceed to the MENU");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Press ANY KEY to EXIT the application");
-            Console.ResetColor();
-            ConsoleKey keyPressed;
-            ConsoleKeyInfo keyInfo = ReadKey(true);
-            keyPressed = keyInfo.Key;
-
-            if (keyPressed == ConsoleKey.Enter)
-            {
-                Menu5();
-
-            }
-            else
-            {
-                ExitApp();
-            }
-
-        }
-        //Calculates the penalty for the overdue return time
-        public static decimal RentDue(Book book)
-        {
-            Console.Write("Enter the number of days since the book has been borrowed: ");
-            decimal DaysSinceBorrowed = decimal.Parse(Console.ReadLine());
-            if(DaysSinceBorrowed > 14)
-                DaysSinceBorrowed -= 14;
-
-            return (book.Price + ((book.Price*DaysSinceBorrowed)/100));
-
-          
-        }
-
-
 
         public static void RunMainMenu() 
         {
@@ -302,16 +223,12 @@ namespace LibraryManagement
                     break;
                 case 4:
                     Clear();
-                    ReturnBook();
+                    BookRental.ReturnBook();
                     break;
-                
                 case 5:
                     ExitApp();
                     break;
-
-                    
             }
-            
         }
 
         public static void Menu1()
@@ -397,7 +314,7 @@ namespace LibraryManagement
             switch (selectedIndex)
             {
                 case 0:
-                    ReturnBook();
+                    BookRental.ReturnBook();
                     break;
                 case 1:
                     RunMainMenu();
@@ -405,47 +322,12 @@ namespace LibraryManagement
             }
         }
 
-        static void ExitApp()
+        public static void ExitApp()
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey(true);
             Environment.Exit(0);
         }
-
-        //Retrieve input from user
-        static void UserInput()
-        {
-            string input = Console.ReadLine();
-            Console.WriteLine("");
-
-            if (input.Equals("1"))
-            {
-                AddBook();
-            }
-            else if (input.Equals("2"))
-            {
-                GetAllBooks();
-            }
-            else if( input.Equals("3"))
-            {
-                NumberOfBooks();
-            }
-            else if(input.Equals("4"))
-            {
-                Console.WriteLine("MENU: ");
-                Console.WriteLine("Rent a book. (Type 1)");
-                Console.WriteLine("Return a book. (Type 2)");
-                Console.Write("Choose option: ");
-                int rentOrReturn = int.Parse(Console.ReadLine());
-                if (rentOrReturn == 1)
-                    RentBook();
-                else if (rentOrReturn == 2)
-                    ReturnBook();
-                else Console.WriteLine("Invalid option!");
-            }
-              
-        }
-
 
         //Adding some default books to the library
         public static void DefaultBooks()
@@ -456,7 +338,6 @@ namespace LibraryManagement
                 Name = "Tarzan",
                 Isbn = "9786064402547",
                 Price = 50
-
             };
 
             var book2 = new Book
@@ -465,7 +346,6 @@ namespace LibraryManagement
                 Name = "Poetry",
                 Isbn = "5436461214544",
                 Price = 30
-
             };
 
             var book3 = new Book
@@ -474,7 +354,6 @@ namespace LibraryManagement
                 Name = "Essentialism",
                 Isbn = "6852314402543",
                 Price = 70
-
             };
 
             var book4 = new Book
@@ -483,16 +362,13 @@ namespace LibraryManagement
                 Name = "Winnetou",
                 Isbn = "3428664102231",
                 Price = 40
-
             };
+
             AllBooks.Add(book1);
             AllBooks.Add(book2);
             AllBooks.Add(book3);
             AllBooks.Add(book4);
-
         }
-
-       
 
         public static void DisplayBooks()
         {
@@ -509,8 +385,7 @@ namespace LibraryManagement
                 Console.WriteLine(b.Name);
                 Console.Write("ISBN: ");
                 Console.WriteLine(b.Isbn);
-                Console.Write("Rental price: ");
-                Console.WriteLine(b.Price);
+                Console.Write("Rental price: {0} RON ", b.Price);
                 Console.WriteLine(" ");
             }
 
@@ -527,12 +402,9 @@ namespace LibraryManagement
                 Console.WriteLine(r.Name);
                 Console.Write("ISBN: ");
                 Console.WriteLine(r.Isbn);
-                Console.Write("Rental price: ");
-                Console.WriteLine(r.Price);
+                Console.Write("Rental price: {0} RON ", r.Price);
                 Console.WriteLine(" ");
             }
         }
-
     }
-
 }

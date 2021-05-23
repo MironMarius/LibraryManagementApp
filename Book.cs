@@ -7,24 +7,13 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement
 {
-    //Book class
     public class Book
     {
-
-        
         public int Id { get; set; }
-        [Required(ErrorMessage ="The book name is required")]
-        [MaxLength(10)]
         public string Name { get; set; }
-        [Required(ErrorMessage = "The book ISBN is required")]
         public string Isbn { get; set; }
-        [Required(ErrorMessage = "The book price is required")]
-        [MinLength(2)]
-        [MaxLength(3)]
         public decimal Price { get; set; }
         
-
-        //Book constructors
         public Book()
         {
 
@@ -36,9 +25,6 @@ namespace LibraryManagement
             Name = name;
             Isbn = isbn;
             Price = price;
-            
         }
-
-
     }
 }

@@ -10,7 +10,6 @@ namespace LibraryManagement
 
     class Menu
     {
-
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
@@ -46,7 +45,6 @@ namespace LibraryManagement
                     Console.BackgroundColor = ConsoleColor.Black;
                 }
                 Console.WriteLine($"{prefix}<<  {currentOption}  >>");
-
             }
             ResetColor();
         }
@@ -57,10 +55,9 @@ namespace LibraryManagement
             {
                 Clear();
                 DisplayOptions();
-
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
-
+                
                 //Update selected option based on arrow keys
                 if(keyPressed==ConsoleKey.UpArrow)
                 {
@@ -80,12 +77,8 @@ namespace LibraryManagement
                 }
 
             } while (keyPressed != ConsoleKey.Enter);
-
+            
             return SelectedIndex;
         }
-
-
-
-        
     }
 }
