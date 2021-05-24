@@ -151,12 +151,18 @@ namespace LibraryManagement
             Console.ResetColor();
             int inputId = int.Parse(Console.ReadLine());
 
-            foreach(Book b in AllBooks.ToList())
-                if(inputId == b.Id )
+            foreach (Book b in AllBooks.ToList())
+                if (inputId == b.Id)
                 {
                     RentedBooks.Add(b);
                     AllBooks.Remove(b);
                 }
+            if (inputId > AllBooks.Count || inputId < 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("The ID entered doesn't exist");
+                Console.ResetColor();
+            }
 
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -387,6 +393,7 @@ namespace LibraryManagement
                 Console.WriteLine(b.Isbn);
                 Console.Write("Rental price: {0} RON ", b.Price);
                 Console.WriteLine(" ");
+                Console.WriteLine();
             }
 
             //Display books that are rented
@@ -404,6 +411,7 @@ namespace LibraryManagement
                 Console.WriteLine(r.Isbn);
                 Console.Write("Rental price: {0} RON ", r.Price);
                 Console.WriteLine(" ");
+                Console.WriteLine();
             }
         }
     }

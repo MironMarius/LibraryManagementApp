@@ -30,6 +30,13 @@ namespace LibraryManagement
             Console.Write("Enter the ID of the book that will be returned: ");
             int inputId = int.Parse(Console.ReadLine());
 
+            if (inputId > Program.RentedBooks.Count || inputId < 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("The ID entered doesn't exist");
+                Console.ResetColor();
+            }
+
             foreach (Book r in Program.RentedBooks.ToList())
                 if (inputId == r.Id)
                 {
@@ -48,7 +55,6 @@ namespace LibraryManagement
                         Console.WriteLine("The book was returned in time, pay due is {0}", r.Price);
                         Console.ResetColor();
                     }
-
                     Program.AllBooks.Add(r);
                     Program.RentedBooks.Remove(r);
                 }
